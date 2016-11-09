@@ -37,12 +37,17 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+            'driver' => 'custom',
+            'provider' => 'lightning',
         ],
 
         'api' => [
             'driver' => 'token',
+            'provider' => 'users',
+        ],
+
+        'custom' => [
+            'driver' => 'custom',
             'provider' => 'users',
         ],
     ],
@@ -67,8 +72,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
+
+        'lightning' => [
+            'driver' => 'lightning',
+            'model' => App\Models\User::class,
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

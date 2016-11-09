@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Events\NewUserRegistered;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;

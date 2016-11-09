@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -34,12 +34,12 @@ class User extends Authenticatable
      */
     public static function findByToken($token)
     {
-        if ( \Password::getRepository()->exists(new \App\User(), $token)) {
+        if ( \Password::getRepository()->exists(new \App\Models\User(), $token)) {
             $reset = \DB::table('password_resets')->where('token', $token)->first();
 
             \Password::getRepository()->delete($token);
 
-            return \App\User::where('email', $reset->email)->firstOrFail();
+            return \App\Models\User::where('email', $reset->email)->firstOrFail();
         }
 
         return false;

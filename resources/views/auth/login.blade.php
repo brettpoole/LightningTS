@@ -54,9 +54,15 @@
                                     Login
                                 </button>
 
+                                @if ( $errors->has('pending'))
+                                <a class="btn btn-link" href="{{ url('activation/resend') }}">
+                                    Resend Activation Email
+                                </a>
+                                @else
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">
                                     Forgot Your Password?
                                 </a>
+                                @endif
                             </div>
                         </div>
                     </form>

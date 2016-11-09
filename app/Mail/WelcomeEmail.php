@@ -3,7 +3,7 @@
 namespace App\Mail;
 
 use Password;
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -12,7 +12,7 @@ class WelcomeEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /** @var \App\User */
+    /** @var \App\Models\User */
     public $user;
 
     /** @var string */
