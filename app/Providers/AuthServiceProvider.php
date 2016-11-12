@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -25,19 +26,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        \Auth::provider('lightning', function ($app, array $config) {
-           return new \App\Auth\LightningUserProvider(
-                $app->make('hash'),
-                $config['model']);
-        });
 
         \Auth::extend('custom', function ($app, $name) {
             return new \App\Auth\EnhancedGuard(
                 $name,
-                \Auth::createUserProvider('lightning'),
+                Auth::createUserProvider('users'),
                 $app['session.store'],
                 $app['request']
             );
         });
     }
 }
+

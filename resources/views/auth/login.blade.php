@@ -55,7 +55,7 @@
                                 </button>
 
                                 @if ( $errors->has('pending'))
-                                <a class="btn btn-link" href="{{ url('activation/resend') }}">
+                                <a class="btn btn-link" href="{{ url('/activate') }}">
                                     Resend Activation Email
                                 </a>
                                 @else

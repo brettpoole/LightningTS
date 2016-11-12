@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/register/confirm', 'WelcomeController@index');
-Route::get('activation/resend', 'WelcomeController@activate');
+Route::get('/activate', 'WelcomeController@activate');
 
 Auth::routes();
 

@@ -34,9 +34,13 @@ class User extends Authenticatable
      */
     public static function findByToken($token)
     {
-        if ( \Password::getRepository()->exists(new \App\Models\User(), $token)) {
-            $reset = \DB::table('password_resets')->where('token', $token)->first();
+        $reset = \DB::table('password_resets')->where('token', $token)->first();
 
+        if (! isset($reset->email)) {
+            return false;
+        }
+
+        if ($user = \App\Models\User::where('email', $reset->email)->first()) {
             \Password::getRepository()->delete($token);
 
             return \App\Models\User::where('email', $reset->email)->firstOrFail();

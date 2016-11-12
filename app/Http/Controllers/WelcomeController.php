@@ -17,7 +17,6 @@ class WelcomeController extends Controller
             return redirect('/login')->with('error', 'The link you clicked is not valid');
         }
 
-        dd($user);
         $user->activated_at = \Carbon\Carbon::now();
         $user->save();
 

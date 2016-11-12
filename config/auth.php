@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'custom',
-            'provider' => 'lightning',
+            'provider' => 'users',
         ],
 
         'api' => [
@@ -46,10 +46,6 @@ return [
             'provider' => 'users',
         ],
 
-        'custom' => [
-            'driver' => 'custom',
-            'provider' => 'users',
-        ],
     ],
 
     /*
@@ -74,11 +70,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        'lightning' => [
-            'driver' => 'lightning',
-            'model' => App\Models\User::class,
-        ]
 
         // 'users' => [
         //     'driver' => 'database',
