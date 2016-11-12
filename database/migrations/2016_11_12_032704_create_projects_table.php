@@ -54,22 +54,7 @@ class CreateProjectsTable extends Migration
                 ->references('id')->on('project_statuses');
         });
 
-        // TODO: remove 'always fail' conditional once migration errors are fixed
-        if (false == true && $this->heedMigrationSafety() && Schema::hasTable($this->safetyTable)) {
-
-	        // ---------------------------------------------------------
-            // If the schema changes involve renaming or dropping columns,
-            // the following insert statement will need to be rewritten.
-	        //
-	        $oldData = DB::table($this->tableName)->get()->all();
-
-	        $oldData = array_shift($oldData);
-
-            DB::table($this->tableName)->insert($oldData);
-			// ---------------------------------------------------------
-
-            Schema::drop($this->safetyTable);
-        }
+		$this->safeImportOldData();
     }
 
     /**

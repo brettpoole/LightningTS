@@ -38,13 +38,7 @@ class CreateTaskWatchersTable extends Migration
             $table->integer('task_id')->unsigned();
         });
 
-        if ($this->heedMigrationSafety() && Schema::hasTable($this->safetyTable)) {
-            DB::select(
-                DB::raw("insert into $this->tableName (user_id, task_id) select user_id, task_id from $this->safetyTable;")
-            );
-
-            Schema::drop($this->safetyTable);
-        }
+	    $this->safeImportOldData();
     }
 
     /**

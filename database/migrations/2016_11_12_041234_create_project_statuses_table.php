@@ -39,6 +39,8 @@ class CreateProjectStatusesTable extends Migration
             $table->boolean('notifies_client')->boolean(false);
             $table->softDeletes();
         });
+
+	    $this->safeImportOldData();
     }
 
     /**

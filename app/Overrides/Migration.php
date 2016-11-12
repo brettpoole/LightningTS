@@ -1,6 +1,7 @@
 <?php
 namespace App\Overrides;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration as BaseMigration;
@@ -30,6 +31,28 @@ class Migration extends BaseMigration
 
             Schema::rename($this->tableName, $this->safetyTable);
         }
+    }
+
+	/**
+	 * Safe Import Old Data
+	 *
+	 * Safely Import the data from the "saved state" table then remove "saved state" table.
+	 * NOTE: If any column datatypes change, or columns are removed, you'll need to override
+	 * this method in your migration class.
+	 *
+	 * @return void
+	 */
+    public function safeImportOldData()
+    {
+	    if ($this->heedMigrationSafety() && Schema::hasTable($this->safetyTable)) {
+		    $oldData = DB::table($this->tableName)->get()->all();
+
+		    $oldData = array_shift($oldData);
+
+		    DB::table($this->tableName)->insert((array)$oldData);
+
+		    Schema::drop($this->safetyTable);
+	    }
     }
 
     /**
