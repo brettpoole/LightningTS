@@ -20,6 +20,12 @@ class CreateTaskWatchersTable extends Migration
      */
     protected $tableName = 'task_watchers';
 
+	protected $indexes = [
+		'indexes' => [],
+		'uniques' => [],
+		'foreigns' => [],
+	];
+
     /**
      * Run the migrations.
      *
@@ -48,15 +54,6 @@ class CreateTaskWatchersTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('task_watchers');
-        if (! Schema::hasTable($this->tableName)) {
-            return;
-        }
-
-        if ($this->heedMigrationSafety() && ! Schema::hasTable($this->safetyTable)) {
-            Schema::rename($this->tableName, $this->safetyTable);
-        } else {
-            Schema::drop($this->tableName);
-        }
+        $this->safeDown($this->indexes);
     }
 }

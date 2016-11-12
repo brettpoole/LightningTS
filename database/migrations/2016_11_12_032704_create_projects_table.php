@@ -20,6 +20,12 @@ class CreateProjectsTable extends Migration
      */
     protected $tableName = 'projects';
 
+	protected $indexes = [
+		'indexes' => [],
+		'uniques' => ['projects_name_unique'],
+		'foreigns' => ['projects_project_status_id_foreign'],
+	];
+
     /**
      * Run the migrations.
      *
@@ -27,6 +33,8 @@ class CreateProjectsTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
+
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('avatar');
@@ -41,19 +49,24 @@ class CreateProjectsTable extends Migration
             $table->integer('project_stage_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('project_status_id')
+                ->references('id')->on('project_statuses');
         });
 
         // TODO: remove 'always fail' conditional once migration errors are fixed
         if (false == true && $this->heedMigrationSafety() && Schema::hasTable($this->safetyTable)) {
-            $oldData = DB::table($this->tableName)->select(
-                'avatar', 'name', 'description', 'budget', 'client_id',
-                'project_status_id', 'starts_at', 'endless', 'ends_at',
-                'project_stage_id', 'taggable', 'created_at', 'updated_at',
-                'deleted_at')->get()->all();
 
+	        // ---------------------------------------------------------
             // If the schema changes involve renaming or dropping columns,
             // the following insert statement will need to be rewritten.
+	        //
+	        $oldData = DB::table($this->tableName)->get()->all();
+
+	        $oldData = array_shift($oldData);
+
             DB::table($this->tableName)->insert($oldData);
+			// ---------------------------------------------------------
 
             Schema::drop($this->safetyTable);
         }
@@ -66,7 +79,6 @@ class CreateProjectsTable extends Migration
      */
     public function down()
     {
-        // TODO: Write a table-agnostic table-copy method for Migrate override
-        Schema::dropIfExists($this->tableName);
+        $this->safeDown($this->indexes);
     }
 }

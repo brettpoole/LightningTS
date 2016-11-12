@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Migrations\Migration;
+use App\Overrides\Migration;
 
 class CreateProjectStatusesTable extends Migration
 {
@@ -19,6 +19,12 @@ class CreateProjectStatusesTable extends Migration
      * @var string
      */
     protected $tableName = 'project_statuses';
+
+	protected $indexes = [
+		'indexes' => [],
+		'uniques' => ['project_statuses_name_unique'],
+		'foreigns' => [],
+	];
 
     /**
      * Run the migrations.
@@ -42,19 +48,6 @@ class CreateProjectStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_statuses');
-    }
-
-    /**
-     * Find out if Migration Safety is enabled
-     * @return bool
-     */
-    private function heedMigrationSafety()
-    {
-        if (config('database.migration_safety')) {
-            return true;
-        }
-
-        return false;
+        $this->safeDown($this->indexes);
     }
 }
