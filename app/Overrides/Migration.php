@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration as BaseMigration;
 
+/**
+ * Class Migration
+ * Extends the existing Illuminate package to add a Safety feature
+ * @package App\Overrides
+ */
 class Migration extends BaseMigration
 {
     /**
@@ -27,32 +32,32 @@ class Migration extends BaseMigration
         if (Schema::hasTable($this->tableName)) {
             $this->safeDropIndexes($indexes);
 
-	        Schema::dropIfExists($this->safetyTable);
+            Schema::dropIfExists($this->safetyTable);
 
             Schema::rename($this->tableName, $this->safetyTable);
         }
     }
 
-	/**
-	 * Safe Import Old Data
-	 *
-	 * Safely Import the data from the "saved state" table then remove "saved state" table.
-	 * NOTE: If any column datatypes change, or columns are removed, you'll need to override
-	 * this method in your migration class.
-	 *
-	 * @return void
-	 */
+    /**
+     * Safe Import Old Data
+     *
+     * Safely Import the data from the "saved state" table then remove "saved state" table.
+     * NOTE: If any column datatypes change, or columns are removed, you'll need to override
+     * this method in your migration class.
+     *
+     * @return void
+     */
     public function safeImport()
     {
-	    if ($this->heedMigrationSafety() && Schema::hasTable($this->safetyTable)) {
-		    $oldData = DB::table($this->tableName)->get()->all();
+        if ($this->heedMigrationSafety() && Schema::hasTable($this->safetyTable)) {
+            $oldData = DB::table($this->tableName)->get()->all();
 
-		    $oldData = array_shift($oldData);
+            $oldData = array_shift($oldData);
 
-		    DB::table($this->tableName)->insert((array)$oldData);
+            DB::table($this->tableName)->insert((array)$oldData);
 
-		    Schema::drop($this->safetyTable);
-	    }
+            Schema::drop($this->safetyTable);
+        }
     }
 
     /**
@@ -71,8 +76,8 @@ class Migration extends BaseMigration
 
         $idx = new \stdClass();
         $idx->indexes = $indexes['indexes'];
-	    $idx->uniques = $indexes['uniques'];
-	    $idx->foreigns = $indexes['foreigns'];
+        $idx->uniques = $indexes['uniques'];
+        $idx->foreigns = $indexes['foreigns'];
 
         Schema::table($this->tableName, function (Blueprint $table) use ($idx) {
             foreach ($idx->indexes as $index) {
@@ -84,7 +89,7 @@ class Migration extends BaseMigration
             }
 
             foreach ($idx->foreigns as $foreign) {
-	            $table->dropForeign($foreign);
+                $table->dropForeign($foreign);
             }
         });
     }

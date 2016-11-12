@@ -30,11 +30,21 @@ class Project extends Model
         return $this->belongsToMany(\App\Models\User::class, 'project_memberships');
     }
 
+    /**
+     * Get the stage this project is in
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function stage()
     {
         return $this->belongsTo(\App\Models\ProjectStage::class, 'project_stage_id');
     }
 
+    /**
+     * Get the status for this project
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function status()
     {
         return $this->belongsTo(\App\Models\ProjectStatus::class, 'project_status_id');

@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ProjectStatus
+ * Class TaskStatus
  * @package App\Models
  */
-class ProjectStatus extends Model
+class TaskStatus extends Model
 {
     /**
-     * Get all projects with this status
+     * Get all the tasks with this status
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function projects()
+    public function tasks()
     {
-        return $this->hasMany(\App\Models\Project::class);
+        return $this->hasMany(\App\Models\Task::class);
     }
 }

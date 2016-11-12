@@ -1,24 +1,24 @@
 <?php
 
+use App\Overrides\Migration;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use App\Overrides\Migration;
 
-class CreateProjectStatusesTable extends Migration
+class CreateTaskStatusesTable extends Migration
 {
     /**
      * Table name for this migration
      *
      * @var string
      */
-    protected $tableName = 'project_statuses';
+    protected $tableName = 'task_statuses';
 
     /**
      * Table name used for safe migration
      *
      * @var string
      */
-    protected $safetyTable = 'project_statuses__safe_state';
+    protected $safetyTable = 'task_statuses__safe_state';
 
     /**
      * All indexes in place on table used for safe migration
@@ -26,7 +26,7 @@ class CreateProjectStatusesTable extends Migration
      */
     protected $indexes = [
         'indexes' => [],
-        'uniques' => ['project_statuses_name_unique'],
+        'uniques' => ['task_statuses_name_unique'],
         'foreigns' => [],
     ];
 
@@ -37,11 +37,10 @@ class CreateProjectStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_statuses', function (Blueprint $table) {
+        Schema::create($this->tableName, function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->boolean('notifies_client')->boolean(false);
-            $table->softDeletes();
+            $table->boolean('closes_task')->default(false);
         });
 
         $this->safeImport();

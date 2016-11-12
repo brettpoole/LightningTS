@@ -10,23 +10,43 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Task extends Model
 {
-	/**
-	 * Get associated Projecs
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-	 */
-	public function projects()
-	{
-		return $this->belongsToMany(\App\Models\Project::class, 'project_tasks');
-	}
+    /**
+     * Get associated Projecs
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function projects()
+    {
+        return $this->belongsToMany(\App\Models\Project::class, 'project_tasks');
+    }
 
-	/**
-	 * Get all users who are watching this task
-	 *
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-	 */
-	public function watchers()
-	{
-		return $this->belongsToMany(\App\Models\User::class, 'task_watchers');
-	}
+    /**
+     * Get all users who are watching this task
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function watchers()
+    {
+        return $this->belongsToMany(\App\Models\User::class, 'task_watchers');
+    }
+
+    /**
+     * Get the status for this task
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function status()
+    {
+        return $this->belongsTo(\App\Models\TaskStatus::class, 'task_status_id');
+    }
+
+    /**
+     * Get the priority for this task
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function priority()
+    {
+        return $this->belongsTo(\App\Models\TaskPriority::class, 'task_priority_id');
+    }
 }
