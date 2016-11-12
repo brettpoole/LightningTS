@@ -11,12 +11,13 @@ class ProjectStatusSeeder extends Seeder
      */
     public function run()
     {
-	    $defaultStatuses = [
-	    	['name' => 'Scheduled', 'notifies_client' => false],
-		    ['name' => 'Underway', 'notifies_client' => false],
-		    ['name' => 'Complete', 'notifies_client' => false],
-		    ['name' => 'On Hold', 'notifies_client' => false],
-		];
+        $defaultStatuses = [
+            ['name' => 'Pending', 'notifies_client' => false],
+            ['name' => 'Active', 'notifies_client' => false],
+            ['name' => 'Stalled', 'notifies_client' => true],
+            ['name' => 'Complete', 'notifies_client' => true],
+            ['name' => 'Cancelled', 'notifies_client' => false],
+        ];
 
         DB::table('project_statuses')->insert($defaultStatuses);
     }

@@ -54,7 +54,7 @@ class CreateProjectsTable extends Migration
                 ->references('id')->on('project_statuses');
         });
 
-		$this->safeImportOldData();
+		$this->safeImport();
     }
 
     /**

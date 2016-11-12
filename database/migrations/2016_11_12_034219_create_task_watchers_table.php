@@ -38,7 +38,7 @@ class CreateTaskWatchersTable extends Migration
             $table->integer('task_id')->unsigned();
         });
 
-	    $this->safeImportOldData();
+	    $this->safeImport();
     }
 
     /**

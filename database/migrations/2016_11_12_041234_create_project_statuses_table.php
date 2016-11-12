@@ -40,7 +40,7 @@ class CreateProjectStatusesTable extends Migration
             $table->softDeletes();
         });
 
-	    $this->safeImportOldData();
+	    $this->safeImport();
     }
 
     /**

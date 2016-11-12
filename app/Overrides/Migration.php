@@ -42,7 +42,7 @@ class Migration extends BaseMigration
 	 *
 	 * @return void
 	 */
-    public function safeImportOldData()
+    public function safeImport()
     {
 	    if ($this->heedMigrationSafety() && Schema::hasTable($this->safetyTable)) {
 		    $oldData = DB::table($this->tableName)->get()->all();

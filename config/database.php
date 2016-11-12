@@ -94,18 +94,18 @@ return [
 
     'migrations' => 'migrations',
 
-	/*
-	|--------------------------------------------------------------------------
-	| Migration Safety Routines
-	|--------------------------------------------------------------------------
-	|
-	| This tells the application whether or not to backup your data and attempt
-	| to safely import it into the new data structure. This can be useful when
-	| performing upgrades where database changes have occurred.
-	|
-	*/
+    /*
+    |--------------------------------------------------------------------------
+    | Migration Safety Routines
+    |--------------------------------------------------------------------------
+    |
+    | This tells the application whether or not to backup your data and attempt
+    | to safely import it into the new data structure. This can be useful when
+    | performing upgrades where database changes have occurred.
+    |
+    */
 
-	'migration_safety' => true,
+    'migration_safety' => false,
 
     /*
     |--------------------------------------------------------------------------
