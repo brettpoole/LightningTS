@@ -13,30 +13,52 @@ class TaskSeeder extends Seeder
     {
         $quickstartTasks = [
             [
-                'name' => 'Client wants blue background darker',
-                'definition' => "On the conference call today, the client expressed
-                    that the blue background is too juvenile, and they'd like a more
-                    professional color.",
-                'hours_estimated' => '1',
+                'name' => 'Plan out the Database Model',
+                'definition' => "Meeting Agenda: determine database structure",
+                'hours_estimated' => 12,
                 'hours_worked' => 0,
                 'task_status_id' => 1,
-                'task_priority_id' => 3,
+                'task_priority_id' => 4,
             ],
             [
-                'name' => 'Welcome page on website is just showing code',
-                'definition' => "It looks like the website code is leaking",
-                'hours_estimated' => 1,
-                'hours_worked' => 0.5,
-                'task_status_id' => 3,
-                'task_priority_id' => 5,
+                'name' => 'Plan out the Application Model',
+                'definition' => "Meeting Agenda: determine application structure",
+                'hours_estimated' => 12,
+                'hours_worked' => 0,
+                'task_status_id' => 1,
+                'task_priority_id' => 4,
             ],
             [
-                'name' => 'Export site images',
-                'definition' => "The customer wants their images on a thumbdrive",
-                'hours_estimated' => 0.5,
-                'hours_worked' => 0.5,
-                'task_status_id' => 5,
-                'task_priority_id' => 3,
+                'name' => 'Create application scaffolding',
+                'definition' => "Deliver a functional mock-up of the application",
+                'hours_estimated' => 40,
+                'hours_worked' => 0,
+                'task_status_id' => 1,
+                'task_priority_id' => 4,
+            ],
+            [
+                'name' => 'Build the database',
+                'definition' => "A functional mock-up of the db with permissions",
+                'hours_estimated' => 24,
+                'hours_worked' => 0,
+                'task_status_id' => 1,
+                'task_priority_id' => 4,
+            ],
+            [
+                'name' => 'Add application features',
+                'definition' => "Start adding required features to the application",
+                'hours_estimated' => 80,
+                'hours_worked' => 0,
+                'task_status_id' => 1,
+                'task_priority_id' => 4,
+            ],
+            [
+                'name' => 'Complete database with maintenance plan',
+                'definition' => "Make sure scalability is not going to be a problem and that tables do not become slow to query",
+                'hours_estimated' => 40,
+                'hours_worked' => 0,
+                'task_status_id' => 1,
+                'task_priority_id' => 4,
             ],
         ];
 
@@ -46,6 +68,9 @@ class TaskSeeder extends Seeder
             ['project_id' => 1, 'task_id' => 1],
             ['project_id' => 1, 'task_id' => 2],
             ['project_id' => 1, 'task_id' => 3],
+            ['project_id' => 1, 'task_id' => 4],
+            ['project_id' => 1, 'task_id' => 5],
+            ['project_id' => 1, 'task_id' => 6],
         ];
 
         DB::table('project_tasks')->insert($quickstartTaskAttachment);

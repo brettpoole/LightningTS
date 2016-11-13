@@ -49,4 +49,14 @@ class Project extends Model
     {
         return $this->belongsTo(\App\Models\ProjectStatus::class, 'project_status_id');
     }
+
+    /**
+     * Get all sequences involving this project
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sequences()
+    {
+        return $this->hasMany(\App\Models\TaskSequence::class);
+    }
 }

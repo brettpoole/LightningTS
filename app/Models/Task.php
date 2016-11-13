@@ -49,4 +49,13 @@ class Task extends Model
     {
         return $this->belongsTo(\App\Models\TaskPriority::class, 'task_priority_id');
     }
+
+    /**
+     * Get the sequences this task belongs to
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function sequences()
+    {
+        return $this->hasMany(\App\Models\TaskSequence::class);
+    }
 }
