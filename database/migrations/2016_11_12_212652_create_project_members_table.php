@@ -25,7 +25,7 @@ class CreateProjectMembersTable extends Migration
     protected $indexes = [
         'indexes' => [],
         'uniques' => [],
-        'foreigns' => ['project_id', 'user_id'],
+        'foreigns' => ['project_id', 'user_id', 'project_role_id'],
     ];
 
     /**
@@ -36,11 +36,13 @@ class CreateProjectMembersTable extends Migration
     public function up()
     {
         Schema::create('project_members', function (Blueprint $table) {
-           $table->integer('project_id')->unsigned();
-           $table->integer('user_id')->unsigned();
+            $table->integer('project_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('project_role_id')->unsigned();
 
             $table->foreign('project_id')->references('id')->on('projects');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('project_role_id')->references('id')->on('project_roles');
         });
 
         $this->safeImport();
