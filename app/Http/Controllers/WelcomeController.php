@@ -20,6 +20,8 @@ class WelcomeController extends Controller
         $user->activated_at = \Carbon\Carbon::now();
         $user->save();
 
+        \Auth::loginUsingId($user->id);
+
         return view('/home')->with([
             'user' => $user
         ]);
@@ -27,10 +29,13 @@ class WelcomeController extends Controller
 
     public function activate(Request $request)
     {
-        event(new NewUserRegistered($request->session()->get('user')));
-
         return view('auth.activate')->with([
             'user' => $request->session()->get('user'),
         ]);
+    }
+
+    public function activated(Request $request)
+    {
+        return view('auth.activate');
     }
 }

@@ -252,8 +252,9 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 				<div class="content">
 					<table bgcolor="">
 					<tr>
-						<td><img src="http://placehold.it/200x50/" /></td>
-						<td align="right"><h6 class="collapse" style="color: #abbbe9">Hero</h6></td>
+						<td align="center">
+							<h3 color="#FFFFFF" style="color: #fff;">Welcome to Lightning TS!</h3>
+						</td>
 					</tr>
 				</table>
 				</div>
@@ -276,7 +277,6 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 					<td>
 
 						<h3>Click below to confirm your account</h3>
-						<p><img src="http://placehold.it/600x300" /></p><!-- /hero -->
 
 						<a href="{{ URL::to('/register/confirm') }}?token={{ $token }}" class="btn">Confirm Subscription</a>
 

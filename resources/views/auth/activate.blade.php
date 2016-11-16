@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Activation Email</div>
                 <div class="panel-body">
-                    <p>Hey {{ $user->name }}, your activation email has been sent!</p>
+                    <p>Check your email! Your activation link has been sent!</p>
                     <a class="btn btn-xs btn-default" href="{{ url('/login') }}">Click here to login</a>
                 </div>
             </div>

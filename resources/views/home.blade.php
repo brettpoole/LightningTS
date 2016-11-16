@@ -8,7 +8,8 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in!
+                    <a href="/projects" class="btn btn-primary">View all projects</a>
+                    <a href="/tasks" class="btn btn-primary">View all tasks</a>
                 </div>
             </div>
         </div>

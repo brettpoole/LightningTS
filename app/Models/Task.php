@@ -52,10 +52,21 @@ class Task extends Model
 
     /**
      * Get the sequences this task belongs to
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function sequences()
     {
         return $this->hasMany(\App\Models\TaskSequence::class);
+    }
+
+    /**
+     * Get all users who have a role in this task
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function members()
+    {
+        return $this->belongsToMany(\App\Models\User::class, 'task_members');
     }
 }

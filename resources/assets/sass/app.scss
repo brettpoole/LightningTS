@@ -7,3 +7,21 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+
+    .project-list-item {
+        min-height: 75px;
+        margin: 5px 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;;
+        align-content: flex-start;
+
+         p {
+             margin: 0 0 0 15px;
+         }
+    }
+}

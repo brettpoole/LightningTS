@@ -11,6 +11,16 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     /**
+     * Allow projects to be created with these fields
+     * @var array
+     */
+    protected $fillable = [
+        'avatar', 'name', 'description', 'budget', 'client_id',
+        'project_status_id', 'starts_at', 'endless', 'ends_at',
+        'project_stage_id', 'deleted_at',
+    ];
+
+    /**
      * Get all tasks associated with this project
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

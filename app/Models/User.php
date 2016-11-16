@@ -38,6 +38,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all tasks of which this user is a member
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tasks()
+    {
+        return $this->belongsToMany(\App\Models\Task::class, 'task_members');
+    }
+
+    /**
      * Retrieve the user associated with a reset token
      *
      * @param string $token

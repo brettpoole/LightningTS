@@ -83,6 +83,7 @@ class EnhancedGuard extends SessionGuard implements StatefulGuard, SupportsBasic
     protected function firePendingActivationEvent($user, array $credentials)
     {
         if (isset($this->events)) {
+            dd($user);
             $this->events->fire(new \App\Events\PendingActivation($user, $credentials));
         }
     }
